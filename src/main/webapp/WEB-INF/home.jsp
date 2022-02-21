@@ -24,15 +24,24 @@
 </head>
 <body class="bg-secondary">
 	<div class="package border border-light bg-dark text-light">
-		<h1 class="m-3 text-center" >The Interview Algo</h1>
+		<h1 class="m-3 text-center text-grad" >The Interview Algo</h1>
 		<hr>
 		<div class="d-flex flex-row justify-content-center">
-				<p class="text-left width70">Welcome ${user.firstName} ${user.lastName}</p>
-				<div class="d-flex flex-row justify-content-around width30">
-					<a href="/snakeGame">Snake Game</a>
-					<a href="/add/algo">Add Algo</a>
-					<a href="/logout">Logout - (${user.firstName} ${user.lastName})</a>
-				</div>
+<!-- 			<div class="d-flex flex-row justify-content-around width30"> -->
+<%-- 				<p class="text-left width70">Welcome ${user.firstName} ${user.lastName}</p> --%>
+<!-- 				<a href="/edit/user">Edit Profile</a> -->
+<!-- 			</div> -->
+			<div class="ms-3 width65">
+				<p class="text-left">Welcome ${user.firstName} ${user.lastName}</p>
+			</div>
+				
+<!-- 			<div class="d-flex flex-row justify-content-around width30"> -->
+			<div class="d-flex flex-row justify-content-between width35 me-3">
+				<a class="txtDecoration" href="/edit/user">Edit Profile</a>
+				<a class="txtDecoration" href="/snakeGame">Snake Game</a>
+				<a class="txtDecoration" href="/add/algo">Add Algo</a>
+				<a class="txtDecoration" href="/logout">Logout - (${user.firstName} ${user.lastName})</a>
+			</div>
 		</div>
 		<hr>
 		

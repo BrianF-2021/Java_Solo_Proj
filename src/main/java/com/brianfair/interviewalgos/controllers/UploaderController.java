@@ -1,16 +1,280 @@
 package com.brianfair.interviewalgos.controllers;
 
+
+import java.io.ByteArrayInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.brianfair.interviewalgos.models.User;
+import com.brianfair.interviewalgos.services.UserService;
 
 //import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 
 
 @Controller
 //@RequestMapping("/prodCat")
-public class MainController 
+public class UploaderController 
 {
+	
+
+	@Autowired
+    private UserService userService;
+	
+	//TRY OPTION A
+	private String IMAGE_FOLDER = "src/main/resources/static/pics/";
+
+// TRY OPTION B
+	
+//	private String IMAGE_FOLDER = "/src/main/webapp/WEB-INF/pics/";
+
+	
+//	public static String uploadDirectory=System.getProperty("user.dir")+"/src/main/webapp/WEB-INF/pics/";
+//
+//	@RequestMapping("/add/picture")
+//	@ResponseBody
+//	public String addPicture(User user,
+//			@RequestParam("img") MultipartFile file,
+//			HttpSession session)
+//	{
+//		StringBuilder fileNames =new StringBuilder();
+//		String fileName = user.getId()+file.getOriginalFilename().substring(file.getOriginalFilename().length()-4);
+//		Path fileNameAndPath = Paths.get(uploadDirectory, fileName);
+//		try
+//		{
+//			Files.write(fileNameAndPath, file.getBytes());
+//		}
+//		catch (IOException e)
+//		{
+//			e.printStackTrace();
+//		}
+//		
+//		
+//		
+//		
+//		user.setPicture(fileName);
+//		this.userService.save(user);
+//		return "Saved Data Successfully!";
+//	}
+	
+//  Try option A
+	  @RequestMapping(value="/add/picture/{id}", method=RequestMethod.POST)
+	  public String addPicture(@Valid @ModelAttribute("user") User user, 
+			  BindingResult result,
+			  @RequestParam("picture") MultipartFile file, 
+			  RedirectAttributes ra,
+			  HttpSession session,
+			  @PathVariable("id") Long userId,
+			  Model model) throws IOException
+	  {
+			if (session.getAttribute("user_id") == null)
+			{
+				return "redirect:/";
+			}
+//			Long user_id = (Long)session.getAttribute("user_id");
+//			User usr = this.userService.findUserById(user_id);
+			
+			if (file.isEmpty())
+			{
+				System.err.println("no file");
+			}
+			else
+			{
+				String origFileName = file.getOriginalFilename();
+				System.out.println(origFileName);
+				try
+				{
+					byte [] bytes = file.getBytes();
+					InputStream inputStream = new ByteArrayInputStream(bytes);
+					Path path = Paths.get(IMAGE_FOLDER+origFileName);
+					Path uploadPath = Paths.get(IMAGE_FOLDER);
+					Path filePath = uploadPath.resolve(StringUtils.cleanPath(origFileName));
+					Files.copy(inputStream,filePath, StandardCopyOption.REPLACE_EXISTING);
+
+//					Files.copy(file.getInputStream(),filePath, StandardCopyOption.REPLACE_EXISTING);
+					FileOutputStream output = new FileOutputStream(IMAGE_FOLDER+origFileName);
+					output.write(file.getBytes());
+//					usr.setPicture(IMAGE_FOLDER+origFileName);
+					user.setPicture(IMAGE_FOLDER+origFileName);
+					this.userService.save(user);
+					output.close();
+				}
+				catch (IOException e)
+				{
+					e.printStackTrace();
+				}
+			}
+
+//			Long user_id = (Long)session.getAttribute("user_id");
+//			User usr = this.userService.findUserById(user_id);
+//			model.addAttribute("user", usr);
+	      if (result.hasErrors()) {
+	          return "edituser.jsp";
+	      } else{
+	      	this.userService.save(user);
+	      	return "redirect:/home";
+	      }
+			//PROBLEM: CREATES A NEW USER OBJECT IN DATABASE INSTEAD OF UPDATING!!!!
+			//PROBLEM: PATH IS STORED TO DATABASE BUT FILE IS NOT COPIED TO ASSIGNED DIRECTORY
+	  }
+}
+			
+	
+
+
+
+
+
+
+//	private String IMAGE_FOLDER = "src/main/resources/static/pics/";
+//	
+//	  
+//	  @RequestMapping(value="/add/picture", method=RequestMethod.POST)
+//	  public String addPicture(@Valid @ModelAttribute("user") User user, 
+//			  BindingResult result,
+//			  @RequestParam("picture") MultipartFile file, 
+//			  RedirectAttributes ra,
+//			  HttpSession session,
+//			  Model model) throws IOException
+//	  {
+//			if (session.getAttribute("user_id") == null)
+//			{
+//				return "redirect:/";
+//			}
+//			Long user_id = (Long)session.getAttribute("user_id");
+//			User usr = this.userService.findUserById(user_id);
+//			
+//			if (file.isEmpty())
+//			{
+//				System.err.println("no file");
+//			}
+//			else
+//			{
+//				System.out.println(file.getOriginalFilename());
+//				try
+//				{
+//					byte [] bytes = file.getBytes();
+//					Path path = Paths.get(IMAGE_FOLDER+file.getOriginalFilename());
+//					Path uploadPath = Paths.get(IMAGE_FOLDER);
+//					Path filePath = uploadPath.resolve(StringUtils.cleanPath(file.getOriginalFilename()));
+//					Files.copy(file.getInputStream(),filePath, StandardCopyOption.REPLACE_EXISTING);
+//					FileOutputStream output = new FileOutputStream(IMAGE_FOLDER+file.getOriginalFilename());
+//					output.write(file.getBytes());
+//					user.setPicture("/pics/"+file.getOriginalFilename());
+//				}
+//				catch (IOException e)
+//				{
+//					e.printStackTrace();
+//				}
+//			}
+//			
+			
+//			String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+//			String fileName = file.getOriginalFilename();
+//			user.setPicture(fileName);
+//			User saved_user = this.userService.save(user);
+//			String uploadDir = "/user-photos/"+saved_user.getId();
+//			Path uploadPath = Paths.get(uploadDir);
+//			if (!Files.exists(uploadPath))
+//			{
+//				Files.createDirectories(uploadPath);
+//			}
+//			
+//			try (InputStream inputStream = file.getInputStream())
+//			{
+//				Path filePath = uploadPath.resolve(fileName);
+//				Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+//			}
+//			catch(IOException e)
+//			{
+//				throw new IOException("Could not save uploaded file: "+fileName);
+//			}
+//			
+//			ra.addFlashAttribute("message", "Your picture has been saved successfully!");
+//			
+//			System.out.println(fileName);
+			//			FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);;
+//		  
+//		  return "redirect:/home";
+//	  }
+
+			
+//			String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+//			String fileName = file.getOriginalFilename();
+//			user.setPicture(fileName);
+//			User saved_user = this.userService.save(user);
+//			String uploadDir = "/user-photos/"+saved_user.getId();
+//			Path uploadPath = Paths.get(uploadDir);
+//			if (!Files.exists(uploadPath))
+//			{
+//				Files.createDirectories(uploadPath);
+//			}
+//			
+//			try (InputStream inputStream = file.getInputStream())
+//			{
+//				Path filePath = uploadPath.resolve(fileName);
+//				Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+//			}
+//			catch(IOException e)
+//			{
+//				throw new IOException("Could not save uploaded file: "+fileName);
+//			}
+//			
+//			ra.addFlashAttribute("message", "Your picture has been saved successfully!");
+//			
+//			System.out.println(fileName);
+			//			FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);;
+//		  
+//		  return "redirect:/home";
+//	  }
+	
+	
+//	  @PostMapping("/upload")
+//	  public ResponseEntity<?> handleFileUpload(@RequestParam("file") MultipartFile file, HttpSession session)
+//	  {
+//
+//		  	Long user_id = (Long)session.getAttribute("user_id");
+//			User usr = this.userService.findUserById(user_id);
+//			
+//			String fileName = file.getOriginalFilename();
+//
+////			String path = request.getSession().getServletContext().getRealPath("/userPics/"+usr.getId();)
+//					
+//			try 
+//			{
+//				file.transferTo(new File("./interviewalgos/src/main/resources/static/pics/"+fileName));
+//			}
+//			catch (Exception e)
+//			{
+//				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+//			}
+//			return ResponseEntity.ok("File uploaded successfully");
+//	  }
+	  
+	  
+	  
+	  
+	
 //	
 //	@Autowired
 //	private QuestionService questionService;
@@ -36,9 +300,6 @@ public class MainController
 //		return "addquestion.jsp";
 //	}
 	
-
-
-}
 //#################################################################################################################################
 //################################################################################################################################
 

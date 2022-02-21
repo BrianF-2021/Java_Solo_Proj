@@ -22,10 +22,10 @@
 	<script type="text/javascript" src="/javascript/javascript.js" defer></script>
 	<title>Products and Categories Home</title>
 </head>
-<body>
+<body class="bg-dark">
 	<div class="d-flex flex-column w-100 bg-dark text-light">
 		<hr>
-		<h1 class="m-3 text-center blue" >The Interview Algo</h1>
+		<h1 class="m-3 text-center text-grad" >The Interview Algo</h1>
 		<hr>
 		<div class="d-flex flex-row">
 			<div class="container border border-dark" >
@@ -50,6 +50,11 @@
 				            <form:label path="email">Email: </form:label>
 				            <form:errors class="text-danger" path="email"/>
 				            <form:input class="form-control" type="email" placeholder="Email" path="email"/>
+				        </p>
+				        <p class="mb-3 mt-t">
+				            <form:label path="picture">Picture: </form:label>
+				            <form:errors class="text-danger" path="picture"/>
+				            <form:input class="form-control" type="file" accept="image/png, image/jpeg" placeholder="Browse Folders" path="picture"/>
 				        </p>
 				        <p class="mb-3 mt-t">
 				            <form:label path="password">Password: </form:label>

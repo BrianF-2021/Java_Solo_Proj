@@ -22,14 +22,19 @@
 	<script type="text/javascript" src="/javascript/javascript.js" defer></script>
 	<title>Algo Details</title>
 </head>
-<body class="bg-secondary">
+<body class="bg-dark">
 	<div class="container border border-dark bg-dark text-light">
-		<h1 class="m-3 text-center title-size" >Algo Details <span class="text-size">(Views: ${viewCount.viewCount})</span></h1>
+		<h1 class="m-3 text-center title-size text-grad" >Algo Details <span class="text-size">(Views: ${viewCount.viewCount})</span></h1>
 		<hr>
-		<div class="d-flex flex-column justify-content-center align-items-center">
-			<div class="d-flex flex-row justify-content-around w-50">
-				<a href="/home">Home</a>
-				<a href="/logout">Logout <span>- (${user.firstName} ${user.lastName}) </span></a>
+		<div class="d-flex flex-row justify-content-center">
+			<div class="ms-3 w-50">
+				<p class="text-left width70">${user.firstName} ${user.lastName}</p>
+			</div>
+			<div class="d-flex flex-row justify-content-between me-3 w-50">
+				<a class="txtDecoration" href="/home">Home</a>
+				<a class="txtDecoration" href="/edit/user">Edit Profile</a>
+				<a class="txtDecoration" href="/add/algo">Add Algo</a>
+				<a class="txtDecoration" href="/logout">Logout <span>- (${user.firstName} ${user.lastName}) </span></a>
 			</div>
 		</div>
 		<hr>
@@ -37,7 +42,7 @@
 		<div class="d-flex flex-row justify-content-between h-100 border">
 		
 			<div class="d-flex flex-column w-50 h-100">
-				<div class="border p-4 mb-5">
+				<div class="p-4 mb-5">
 					<h2 class="text-center" > ~ <span class="text-center bold">${algo.name}</span> ~ </h2>
 					<hr>
 					<div class="d-flex flex-column justify-content-between">
@@ -61,24 +66,24 @@
 				</div>
 				
 				<c:if test="${hasCommented == false}">
-					<div class="d-flex flex-column border">
-						<h2 class="txt-underline font-size mb-3 ms-3">Add Comment: </h2>
+					<div class="d-flex flex-column p-4">
+						<h2 class="txt-underline font-size mb-3 color-bl">Add Comment: </h2>
 						<form:form action="/add/comment/${algo.id}" method="POST" modelAttribute="comment">
 							<p>
 								<form:label class="black label text-light" path="thisComment"></form:label>
 								<form:errors class="text-danger" path="thisComment"/>
-								<form:textarea class="commentbox ms-3 width90" type="text" path="thisComment"/>
+								<form:textarea class="commentbox ms-3 border width90 bg-dark color-gr" type="text" path="thisComment"/>
 							</p>
 							<form:hidden path="user" value="${user.id}"/>
 							<form:hidden path="algo" value="${algo.id}"/>
-							<input class="btns center" type="submit" value="Submit"/>
+							<input class="btns m-3" type="submit" value="Submit"/>
 						</form:form>
 					</div>
 				</c:if>
 			</div>
 			
 			<div class="d-flex flex-column w-50 p-3 h-100 overFlowScroll">
-				<p class="bold text-light txt-underline text-center font-size text-secondary">Comments</p>
+				<h2 class="bold text-light txt-underline text-center font-size text-secondary">Comments</h2>
 				<hr>
 				<c:choose>
 					<c:when test="${algo.comments.size()>0}">
@@ -95,7 +100,7 @@
 						</c:forEach>
 					</c:when>
 					<c:when test="${algo.comments.size()==0}">
-						<p>There are no comments for this Algo!</p>
+						<p class="text-center bold color-gr">There are no comments for this Algo!</p>
 					</c:when>
 				</c:choose>
 			</div>

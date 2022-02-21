@@ -49,6 +49,27 @@ public class UserValidation {
 			
 	}
 	
+	public void editValidate(boolean didChangeEmail, Object target, Errors errors)
+	{
+		User user = (User) target;
+		if(!user.getPassword().equals(user.getPasswordConfirmation()))
+		{
+			errors.rejectValue("password", "Match", "PASSWORDS MUST MATCH!!!!");
+		}
+		if(didChangeEmail)
+		{
+			if(userRepository.existsByEmail(user.getEmail()))
+			{
+				errors.rejectValue("email", "Unique", "Email has already been taken!");
+			}
+		}
+		if(!isValidEmail(user.getEmail()))
+		{
+			errors.rejectValue("email", "Valid", "Not a valid email address!");
+		}
+			
+	}
+	
 	
 	
 

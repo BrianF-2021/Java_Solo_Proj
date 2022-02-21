@@ -189,4 +189,112 @@ body
 	width: 30%;
 }
 
+.width35
+{
+	width:35%;
+}
+
+.width65
+{
+	width: 65%
+}
+
+.bg-grad
+{
+	animation: bg-color 10s ease-in-out infinite;
+/* 	position: relative; */
+}
+
+@keyframes bg-color 
+{
+	0%
+	{
+		background-color: black;
+	}
+	50%
+	{
+		background-color: darkgrey;
+	}
+	100%
+	{
+		background-color: black;
+	}
+}
+
+/* @keyframes bg-color  */
+/* { */
+/* 	0% */
+/* 	{ */
+/* 		background-color: black; */
+/* 	} */
+/* 	25% */
+/* 	{ */
+/* 		background-color: darkgrey; */
+/* 	} */
+/* 	50% */
+/* 	{ */
+/* 		background-color: black; */
+/* 	} */
+/* 	75% */
+/* 	{ */
+/* 		background-color: darkgrey; */
+/* 	} */
+/* 	100% */
+/* 	{ */
+/* 		background-color: black; */
+/* 	} */
+/* } */
+/* @keyframes bg-color  */
+/* { */
+/* 	0% */
+/* 	{ */
+/* 		background-color: yellow; */
+/* 	} */
+/* 	25% */
+/* 	{ */
+/* 		background-color: orange; */
+/* 	} */
+/* 	50% */
+/* 	{ */
+/* 		background-color: red; */
+/* 	} */
+/* 	75% */
+/* 	{ */
+/* 		background-color: blue; */
+/* 	} */
+/* 	100% */
+/* 	{ */
+/* 		background-color: green; */
+/* 	} */
+/* } */
+
+
+
+/* @keyframes text-color  */
+/* { */
+/* 	0% */
+/* 	{ */
+/* 		background-position: 0px 50%; */
+/* 	} */
+/* 	50% */
+/* 	{ */
+/* 		background-position: 100% 50%; */
+/* 	} */
+/* 	100% */
+/* 	{ */
+/* 		background-position: 0px 50%; */
+/* 	} */
+/* } */
+
+.text-grad
+{
+	text-transform: uppercase;
+	background-image: linear-gradient(to right, darkgrey, black, darkgrey);
+/* 	background-image: linear-gradient(-45deg, darkgrey, black, darkgrey); */
+/* 	animation: text-color 10s slide linear infinite; */
+/* 	background-clip: text-grad; */
+/* 	-wibkit-background-clip: text-grad; */
+/* 	-moz-background-clip: text-grad; */
+/* 	color: transparent; */
+}
 

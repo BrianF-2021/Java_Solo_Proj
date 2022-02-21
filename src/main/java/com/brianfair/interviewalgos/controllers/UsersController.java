@@ -1,5 +1,6 @@
 package com.brianfair.interviewalgos.controllers;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -8,13 +9,14 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.brianfair.interviewalgos.models.Algo;
@@ -91,6 +93,7 @@ public class UsersController
 	public String registerForm(@ModelAttribute("user") User user) {
 	    return "main.jsp";
 	}
+
 	@RequestMapping(value="/registering", method=RequestMethod.POST)
 	public String registerUser(@Valid @ModelAttribute("user") User user,
 								BindingResult result, HttpSession session) {
@@ -99,6 +102,8 @@ public class UsersController
 	{
 		return "main.jsp";
 	}
+	
+	
 	User newUser = this.userService.registerUser(user);
 	session.setAttribute("user_id", newUser.getId());
 	return "redirect:/home";
@@ -121,6 +126,57 @@ public class UsersController
     }
 
     
+	@RequestMapping(value="/edit/user")
+	public String editComment(Model model, 
+	  						HttpSession session)
+	  {
+		if (session.getAttribute("user_id") == null)
+		{
+			return "redirect:/";
+		}
+		Long user_id = (Long)session.getAttribute("user_id");
+		User usr = this.userService.findUserById(user_id);
+		model.addAttribute("user", usr);
+		return "edituser.jsp";
+	  }
+	  @RequestMapping(value="/editing/user/{id}", method=RequestMethod.POST)
+	  public String editingComment(@Valid @ModelAttribute("user") User user,
+	  							BindingResult result,
+	  							@PathVariable("id") Long userId,
+	  							HttpSession session,
+	  							Model model)
+	  {
+			if (session.getAttribute("user_id") == null)
+			{
+				return "redirect:/";
+			}
+			Long user_id = (Long)session.getAttribute("user_id");
+			User usr = this.userService.findUserById(user_id);
+//			model.addAttribute("user", usr);
+			System.out.println("usr email: "+usr.getEmail()+" user email: "+user.getEmail());
+
+			if ((usr.getEmail().equals(user.getEmail())))
+			{
+				validation.editValidate(false, user, result);
+			}
+			else
+			{
+				validation.editValidate(true, user, result);
+			}
+	      if (result.hasErrors()) {
+	          return "edituser.jsp";
+	      } else{
+	      	this.userService.registerUser(user);
+	      	return "redirect:/home";
+	      }
+	  }
+	  
+
+
+			
+			
+			
+			
 
 		
 //	@RequestMapping("/register")

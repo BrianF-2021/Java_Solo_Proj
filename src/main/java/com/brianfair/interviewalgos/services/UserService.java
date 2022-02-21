@@ -25,9 +25,19 @@ public class UserService {
         return this.userRepository.save(user);
     }
     
+    public User save(User user)
+    {
+    	return this.userRepository.save(user);
+    }
+    
     // find user by email
     public User findByEmail(String email) {
         return this.userRepository.findByEmail(email);
+    }
+    
+    // find all by email
+    public User findAllByEmail(String email) {
+        return this.userRepository.findAllByEmail(email);
     }
     
     // find user by id

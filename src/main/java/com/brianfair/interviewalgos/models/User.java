@@ -19,6 +19,7 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -49,6 +50,9 @@ public class User
     
     @Email(message="Not a valid email!")
     private String email;
+    
+    @Column(nullable=true, length=150)
+    private String picture;
     
     @NotNull
     @Size(min = 8, max = 150)
@@ -194,6 +198,14 @@ public class User
 
 	public void setViews(List<View> views) {
 		this.views = views;
+	}
+
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
 	
 	

@@ -23,18 +23,22 @@
 
 	<title>Add Algo</title>
 </head>
-<body class="bg-secondary">
+<body class="bg-dark">
 	<div class="container border text-light border bg-dark p-3">
-		<h1 class="m-3 text-center" >Add an Algo</h1>
+		<h1 class="m-3 text-center text-grad" >Add an Algo</h1>
 		<hr>
-		<div class="d-flex flex-column justify-content-center align-items-center">
-			<div class="d-flex flex-row justify-content-around w-50">
-				<a href="/home">Home</a>
-				<a href="/logout">Logout <span>- (${user.firstName} ${user.lastName}) </span></a>
+		<div class="d-flex flex-row justify-content-center">
+			<div class="ms-3 w-75">
+				<p class="text-left width70">${user.firstName} ${user.lastName}</p>
+			</div>
+			<div class="d-flex flex-row justify-content-between w-25 me-3">
+				<a class="txtDecoration" href="/home">Home</a>
+				<a class="txtDecoration" href="/edit/user">Edit Profile</a>
+				<a class="txtDecoration" href="/logout">Logout - (${user.firstName} ${user.lastName})</a>
 			</div>
 		</div>
 		<hr>
-		<div class="d-flex flex-column border justify-content-center align-items-center p-3">
+		<div class="d-flex flex-column justify-content-center align-items-center p-3">
 			<h2 class="text-center" > ~ <span class="text-center bold">New Algo</span> ~ </h2>
 			<form:form action="/adding/algo/${algo.id}" method="POST" modelAttribute="algo">
 				<p class="d-flex flex-column">

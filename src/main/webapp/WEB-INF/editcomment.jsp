@@ -22,8 +22,8 @@
 	<script type="text/javascript" src="/javascript/javascript.js" defer></script>
 	<title>Algo Details</title>
 </head>
-<body  class="bg-secondary text-light">
-	<div class="container border border-dark bg-dark">
+<body  class="bg-dark text-light">
+	<div class="container border border-light bg-dark">
 		<h1 class="m-3 text-center title-size" >Algo Details</h1>
 		<hr>
 		<div class="d-flex flex-column justify-content-center align-items-center">
@@ -34,22 +34,22 @@
 		</div>
 		<hr>
 		
-		<div class="d-flex flex-row justify-content-between h-100 border">
+		<div class="d-flex flex-row justify-content-between h-100">
 		
 <!-- 			<div class="d-flex flex-column w-50 h-100"> -->
-				<div class="border p-4 mb-5 w-50">
+				<div class="p-4 mb-5 w-50">
 					<h2 class="text-center" > ~ <span class="text-center bold">${algo.name}</span> ~ </h2>
 					<hr>
 					<div class="d-flex flex-column justify-content-between">
-						<p class="bold txt-underline font-size color-org">Posted By: </p>
+						<p class="bold txt-underline font-size color-bl">Posted By: </p>
 						<p class="txt-left ms-3 color-gr">${algo.user.firstName} ${algo.user.lastName}</p>
 					</div>
 					<div class="d-flex flex-column justify-content-between">
-						<p class="bold txt-underline font-size color-org">Problem: </p>
+						<p class="bold txt-underline font-size color-bl">Problem: </p>
 						<p class="txt-left ms-3 color-gr">${algo.description}</p>
 					</div>
 					<div class="d-flex flex-column justify-content-between">
-						<p class="bold txt-underline font-size color-org">Algorithm: </p>
+						<p class="bold txt-underline font-size color-bl">Algorithm: </p>
 						<p class="txt-left border ms-3 min-h500 height overFlowScroll color-gr">${algo.solution}</p>
 					</div>
 					<div class="d-flex flex-row justify-content-around m-3">
@@ -58,7 +58,7 @@
 					</div>
 				</div>
 				
-				<div class="d-flex flex-column border w-50">
+				<div class="d-flex flex-column w-50">
 					<h2 class="txt-underline font-size mb-3 ms-3">Edit Comment: </h2>
 					<form:form action="/editing/comment/${comment.id}" method="POST" modelAttribute="comment">
 						<p>
