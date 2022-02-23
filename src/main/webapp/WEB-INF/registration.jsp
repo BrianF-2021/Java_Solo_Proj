@@ -24,7 +24,7 @@
 </head>
 <body>
 	<div class="container border border-dark" >
-		<h1 class="m-3 text-center" >Register</h1>
+		<h1 class="m-3 text-center title_grad" >Register</h1>
 		<hr>
 		<div class="d-flex flex-column justify-content-center align-items-center">
 			<div class="d-flex flex-row justify-content-around w-50">

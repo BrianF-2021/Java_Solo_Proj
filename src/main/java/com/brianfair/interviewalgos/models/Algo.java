@@ -45,11 +45,15 @@ public class Algo
 	private String name;
 	
 	@NotNull
-	@Size(min = 2, max = 500, message="Must be more than 2 characters long!")
+	@Size(min = 1, max = 50, message="Can't be blank!")
+	private String language;
+	
+	@NotNull
+	@Size(min = 2, max = 5000, message="Must be more than 2 characters long and no longer than 5000 characters!")
 	private String solution;
 	
 	@NotNull(message="Can't be blank!")
-	@Size(min = 2, max = 500, message="Must be more than 2 characters long!")
+	@Size(min = 2, max = 500, message="Must be more than 2 characters long and no longer than 500 characters")
 	private String description;
 	    
 	    	    
@@ -180,6 +184,16 @@ public class Algo
 	public void setViews(List<View> views) {
 		this.views = views;
 	}
+
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+	
+	
 	
 	
 

@@ -5,15 +5,73 @@
     margin: 0;
     }
 
-.taskbarBtns
+.forms
 {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	width: 50%;
-/* 	margin-right: 15px; */
+	border: black solid 1px;	
 }
 
+.black
+{
+	color:black;
+}
+
+.txtDkGrey
+{
+	color: darkgrey;
+}
+
+.label
+{
+/* 	30px */
+	font-size:25px;
+}
+
+.labelTextBox
+{
+	width: 250px;
+	height: 40px;
+}
+
+
+.bgLttGrey
+{
+	background-color: lightgrey;
+}
+
+.bgDkGrey
+{
+	background-color: darkgrey;
+}
+
+.bgDarkDkGrey
+{
+	background-color: #2e3436;
+}
+
+.bgLightBlack
+{
+	background-color: #1d1c1c;
+}
+
+table, th
+{
+	border: solid 1px darkgrey;
+	font-weight: bold;
+	font-size: 20px;
+	height: 35px;
+}
+
+.links
+{
+	text-decoration: none;
+/* 	color: #0054ff; */
+	color: #4efbed;
+}
+
+.links:hover
+{
+	color: darkgrey;
+}
 
 .taskbar
 {
@@ -24,7 +82,7 @@
 	margin: 0px 15px;
 	padding: 0px;
 	min-height: 75px;
-/* 	min-width: 900px; */
+	min-width: 900px;
 	border-bottom: 1px solid darkgrey;
 	border-top: 1px darkgrey solid;
 	
@@ -43,61 +101,41 @@
 	height: 90px;
 }
 
-.links
+.taskbarBtns
 {
-	width: fit-content;
-	margin: 5px;
-	text-decoration: none;
-/* 	color: #0054ff; */
-	color: #4efbed;
-	
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 50%;
+	margin-right: 15px;
 }
 
-.links:hover
+table, td
 {
-	color: darkgrey;
+	font-size: 15px;
+	text-align: center;
+	height: 35px;
 }
 
-body
+table
 {
-    display: flex;
-    justify-content: center;
-    padding: 15px;
-    min-width: 900px;
+	width: 100%;
 }
 
-.forms
+.myContainer
 {
-	border: black solid 1px;	
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 20px 15px;
 }
-
-.black
-{
-	color:black;
-}
-
-.label
-{
-/* 	30px */
-	font-size:25px;
-}
-
-.labelTextBox
-{
-	width: 250px;
-	height: 40px;
-}
-
-.bgGrey
-{
-	background-color: lightgrey;
-}
-
 
 .bold
 {
 	font-weight: bolder;
 }
+
 
 .commentbox
 {
@@ -113,6 +151,17 @@ body
     overflow-y: scroll;
 
 }
+
+.marginLeft
+{
+	margin-left: 15px;
+}
+
+.txtLeft
+{
+	text-align: left;
+}
+
 
 .txtDecoration
 {
@@ -146,11 +195,6 @@ body
 	color: blue;
 }
 
-.txt-left
-{
-	text-align: left;
-}
-
 .txt-underline
 {
 	text-decoration: underline;
@@ -181,9 +225,11 @@ body
 	font-size: 2rem;
 }
 
-.title-size
+.title
 {
-	font-size: 3rem;
+	font-size: 2.5rem;
+	text-align: center;
+	margin-bottom: 20px;
 }
 
 .min-h150
@@ -211,22 +257,49 @@ body
 	color: #139bc2;
 }
 
+
 .text-size
 {
-	font-size: .75rem;
+	font-size: 1rem;
+}
+
+.txtCenter
+{
+	text-align: center;
+}
+
+.borderBlack
+{
+	border: black 3px solid;
+}
+
+.myPadding
+{
+	padding: 5px;
+	height: 25px;
+}
+
+.marginBottom
+{
+	margin-bottom: 20px;
 }
 
 .package
 {
 	width: 100%;
-    padding-right: var(--bs-gutter-x,.75rem);
-    padding-left: var(--bs-gutter-x,.75rem);
-    margin-right: auto;
-    margin-left: auto;
+/*     padding-right: var(--bs-gutter-x,.75rem); */
+/*     padding-left: var(--bs-gutter-x,.75rem); */
+/*     margin-right: auto; */
+/*     margin-left: auto; */
     min-height: 600px;
     min-width: 400px;
     height: 100vh;
     width: 100%;
+    border: 1px darkgrey solid;
+    color: lightgrey;
+    display: flex;
+    flex-direction: column;
+/*     justify-content: top; */
     
 }
 
@@ -255,26 +328,14 @@ body
 	width: 65%
 }
 
-.width40
+.width50
 {
-	width:40%;
+	width:50%;
 }
-
-.width60
-{
-	width: 60%;
-}
-
 
 .txt_grad
 {
 	animation: txt_color 10s ease-in-out infinite;
-/* 	position: relative; */
-}
-
-.border_grad
-{
-	animation: border_color 3s ease-in-out infinite;
 /* 	position: relative; */
 }
 
@@ -287,6 +348,13 @@ body
 {
 	border-top: 1px darkgrey solid;
 }
+
+.myBorder
+{
+	border: 1px darkgrey solid;
+}
+
+
 
 @keyframes txt_color 
 {
@@ -315,31 +383,6 @@ body
 	}
 }
 
-@keyframes border_color
-{
-	0%
-	{
-		border:1px solid lightgrey;
-	}
-	25%
-	{
-		border:1px solid darkgrey;
-	}
-	50%
-	{
-		border:1px solid #1d1c1c;
-	}
-	75%
-	{
-		border:1px solid darkgrey;
-	}
-	100%
-	{
-		border:1px solid lightgrey;
-	}
-}
-
-
 @keyframes bg_color 
 {
 	0%
@@ -364,6 +407,11 @@ body
 	}
 }
 
+.opacity
+{
+	opacity: .8;
+}
+
 
 .bg_grad
 {
@@ -381,16 +429,6 @@ body
 {
 	background: linear-gradient(to right, darkgrey, black, darkgrey);
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

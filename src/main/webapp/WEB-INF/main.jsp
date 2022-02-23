@@ -24,13 +24,10 @@
 </head>
 <body class="bg-dark">
 	<div class="d-flex flex-column w-100 bg-dark text-light">
-		<hr>
-		<h1 class="m-3 text-center text-grad" >The Interview Algo</h1>
-		<hr>
+		<h1 class="m-3 text-center title_grad txt_grad pb-3 border_bottom pt-3 border_top" >The Interview Algo</h1>
 		<div class="d-flex flex-row">
 			<div class="container border border-dark" >
-				<h1 class="m-3 text-center" >Register</h1>
-				<hr>
+				<h1 class="m-3 pb-3 text-center border_bottom" >Register</h1>
 				
 			 	<div class="d-flex flex-column justify-content-center align-items-center mb-5">   
 		
@@ -72,8 +69,7 @@
 			</div>
 			
 			<div class="container border border-dark" >
-				<h1 class="m-3 text-center" >Login</h1>
-				<hr>
+				<h1 class="m-3 text-center pb-3 border_bottom" >Login</h1>
 				
 				<div class="d-flex flex-column justify-content-center align-items-center mb-5">
 				    <p class="text-danger" ><c:out value="${loginError}" /></p>

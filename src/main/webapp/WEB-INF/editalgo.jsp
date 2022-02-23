@@ -25,15 +25,16 @@
 </head>
 <body class="bg-secondary">
 	<div class="container border text-light border bg-dark p-3">
-		<h1 class="m-3 text-center" >Edit Your Algo</h1>
-		<hr>
-		<div class="d-flex flex-column justify-content-center align-items-center">
-			<div class="d-flex flex-row justify-content-around w-50">
-				<a href="/home">Home</a>
-				<a href="/logout">Logout <span>- (${user.firstName} ${user.lastName}) </span></a>
+		<h1 class="title_grad txt_grad title_bar" >Edit Your Algo</h1>
+		<div class="taskbar">
+			<div class="ms-3 w-75">
+				<p class="text-left width70">${user.firstName} ${user.lastName}</p>
+			</div>
+			<div class="taskbarBtns width30">
+				<a class="links" href="/home">Home</a>
+				<a class="links" href="/logout">Logout <span>- (${user.firstName} ${user.lastName}) </span></a>
 			</div>
 		</div>
-		<hr>
 		<div class="d-flex flex-column border justify-content-center align-items-center p-3">
 			<h2 class="text-center" > ~ <span class="text-center bold">${algo.name}</span> ~ </h2>
 			<form:form action="/editing/algo/${algo.id}" method="POST" modelAttribute="algo">
@@ -41,6 +42,11 @@
 					<form:label class="color-bl label txt-underline" path="name">Name: </form:label>
 					<form:errors class="text-danger" path="name"/>
 					<form:textarea class="commentbox color-gr ms-3 bg-dark border border-light" type="text" path="name"/>
+				</p>
+				<p class="d-flex flex-column">
+					<form:label class="color-bl label txt-underline" path="language">Language: </form:label>
+					<form:errors class="text-danger" path="language"/>
+					<form:input class="ms-3 bg-dark color-gr border border-light" type="text" path="language"/>
 				</p>
 				<p class="d-flex flex-column">
 					<form:label class="color-bl label txt-underline" path="description">Description: </form:label>

@@ -24,21 +24,25 @@
 </head>
 <body  class="bg-dark text-light">
 	<div class="container border border-light bg-dark">
-		<h1 class="m-3 text-center title-size" >Algo Details</h1>
-		<hr>
-		<div class="d-flex flex-column justify-content-center align-items-center">
-			<div class="d-flex flex-row justify-content-around w-50">
-				<a href="/home">Home</a>
-				<a href="/logout">Logout <span>- (${user.firstName} ${user.lastName}) </span></a>
+		<h1 class="title_grad txt_grad title_bar">Algo Details</h1>
+		<div class="taskbar">
+			<div class="ms-3 w-50">
+				<p class="text-left">${user.firstName} ${user.lastName}</p>
+			</div>
+			<div class="taskbarBtns w-50">
+				<a class="links" href="/home">Home</a>
+				<a class="links" href="/add/algo">Add Algo</a>
+				<a class="links" href="/edit/user">Edit Profile</a>
+				<a class="links" href="/logout">Logout <span>- (${user.firstName} ${user.lastName}) </span></a>
 			</div>
 		</div>
-		<hr>
 		
 		<div class="d-flex flex-row justify-content-between h-100">
 		
 <!-- 			<div class="d-flex flex-column w-50 h-100"> -->
 				<div class="p-4 mb-5 w-50">
 					<h2 class="text-center" > ~ <span class="text-center bold">${algo.name}</span> ~ </h2>
+					<h5 class="text-center bold bg2_grad">(${algo.language})</h5>
 					<hr>
 					<div class="d-flex flex-column justify-content-between">
 						<p class="bold txt-underline font-size color-bl">Posted By: </p>
@@ -58,13 +62,13 @@
 					</div>
 				</div>
 				
-				<div class="d-flex flex-column w-50">
-					<h2 class="txt-underline font-size mb-3 ms-3">Edit Comment: </h2>
+				<div class="d-flex flex-column w-50 p-3">
+					<h2 class="bold txt-underline text-center font-size text-warning">Edit Comment: </h2>
 					<form:form action="/editing/comment/${comment.id}" method="POST" modelAttribute="comment">
 						<p>
 							<form:label class="black label text-light" path="thisComment"></form:label>
 							<form:errors class="text-danger" path="thisComment"/>
-							<form:textarea class="commentbox ms-3 width90" type="text" path="thisComment"/>
+							<form:textarea class="commentbox ms-3 width90 border border-warning bg-dark color-gr" type="text" path="thisComment"/>
 						</p>
 						<form:hidden path="user" value="${user.id}"/>
 						<form:hidden path="algo" value="${algo.id}"/>

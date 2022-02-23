@@ -19,88 +19,71 @@
 	<!-- FOR ANY BOOTSTRAP THAT USES JS OR jQuery-->
 	<script src="/webjars/jquery/jquery.min.js"></script>
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="/javascript/javascript.js" defer></script>
+	<script type="text/javascript" src="/js/javascript.js" defer></script>
 	<title>Home</title>
 </head>
-<body>
-	<div class="container border border-dark">
-		<h1 class="m-3 text-center" >Welcome ${user.firstName} ${user.lastName}</h1>
-		<hr>
-		<div class="d-flex flex-column justify-content-center align-items-center">
-			<div class="d-flex flex-row justify-content-around w-50">
-				<a href="/logout">Logout - (${user.firstName} ${user.lastName})</a>
+<body class="bg-secondary">
+	<div class="package border border-light bg-dark text-light">
+		<h1 class="m-3 text-center title_grad txt_grad pb-3 pt-3 border_bottom border_top" >The Interview Algo</h1>
+		<div class="d-flex flex-row justify-content-center">
+<!-- 			<div class="d-flex flex-row justify-content-around width30"> -->
+<%-- 				<p class="text-left width70">Welcome ${user.firstName} ${user.lastName}</p> --%>
+<!-- 				<a href="/edit/user">Edit Profile</a> -->
+<!-- 			</div> -->
+			<div class="ms-3 width65">
+				<p class="text-left">Welcome ${user.firstName} ${user.lastName}</p>
+			</div>
+				
+<!-- 			<div class="d-flex flex-row justify-content-around width30"> -->
+			<div class="d-flex flex-row justify-content-between width35 me-3">
+				<a class="txtDecoration" href="/rain">Rain</a>
+				<a class="txtDecoration" href="/edit/user">Edit Profile</a>
+				<a class="txtDecoration" href="/snakeGame">Snake Game</a>
+				<a class="txtDecoration" href="/add/algo">Add Algo</a>
+				<a class="txtDecoration" href="/logout">Logout - (${user.firstName} ${user.lastName})</a>
 			</div>
 		</div>
 		<hr>
-<%-- 		<c:set var="sum" val="${0}"/> --%>
-<%-- 		<c:forEach begin="0" end="${show.ratings.size()} varStatus="${i}"> --%>
-<!-- 			< -->
 		
-		
-<%-- 		</c:forEach> --%>
-			
-<%-- 		<c:forEach items="${show.ratings}" var="rate"> --%>
-<%-- 			<c:set var="sum" val="${sum += rate.rating}" --%>
-		
-<%-- 		</c:forEach> --%>
-		
-		
-		
-		
-		<div class="container mt-3 pb-3"> 
-		  <h2>Ideas</h2>         
-		  <table class="table table-striped overFlowScroll">
+				<div class="container mt-3 pb-3"> 
+		  <h2 class="text-center">Algos</h2>         
+		  <table class="table table-striped overFlowScroll border">
 			<thead>
-			  <tr>
-			    <th>Show</th>
-			    <th>Network</th>
-			    <th>Average Rating</th>
+			  <tr class="text-light bg-seco@keyframes bg-color">
+			    <th>Algo</th>
+			    <th>Description</th>
+			    <th>Language</th>
 			    <th>Likes</th>
 			    <th>Action</th>
 			  </tr>
 			</thead>
 			<tbody>
 			
-<%-- 				<c:forEach items="${shows}" var="show"> --%>
-				<c:forEach begin="0" end="${shows.size()-1}" var="i"> 
-				  <tr>
-				  	<td> <a href="/show/details/${shows[i].id}"> ${shows[i].title}</a> </td>
-				    <td>${shows[i].network}</td>
-<%-- 				    <td> <a href="/show/details/${show.id}"> ${show.title}</a> </td> --%>
-<%-- 				    <td>${show.network}</td> --%>
-				    <td> <p> 
-				    	${avgs[i]}
-<%-- 				    	<c:forEach begin="0" end="${shows[i].ratings.size()}" varStatus="j">  --%>
-<%-- 				    		${avgs[i]} --%>
-<%-- 				    	</c:forEach> --%>
-				     </p> </td>
-				    <td>${shows[i].likers.size()}</td>
+				<c:forEach  items="${algos}" var="algo">
+				  <tr class="text-light">
+				  	<td> <a href="/algo/details/${algo.id}"> ${algo.name}</a> </td>
+				    <td>${algo.description}</td>
+				    <td>${algo.language}</td>
+				    <td>${algo.likers.size()}</td>
 				    <td>
 				    	<c:choose>
-				    	<c:when test="${shows[i].likers.contains(user)}">
-				    		<a href="/unlike/${shows[i].id}">Unlike</a>
+				    	<c:when test="${algo.likers.contains(user)}">
+				    		<a href="/unlike/${algo.id}">Unlike</a>
 				    	</c:when>
 				    	<c:otherwise>
-				    		<a href="/like/${shows[i].id}">Like</a>
+				    		<a href="/like/${algo.id}">Like</a>
 				    	</c:otherwise>
 				    	</c:choose>
-<%-- 				    	<c:choose> --%>
-<%-- 				    	<c:when test="${show.likers.contains(user)}"> --%>
-<%-- 				    		<a href="/unlike/${show.id}">Unlike</a> --%>
-<%-- 				    	</c:when> --%>
-<%-- 				    	<c:otherwise> --%>
-<%-- 				    		<a href="/like/${show.id}">Like</a> --%>
-<%-- 				    	</c:otherwise> --%>
-<%-- 				    	</c:choose> --%>
 				    </td>
 				  </tr>
 				</c:forEach>
 			</tbody>
 		  </table>
-		  <a class="btns bgGrey" href="/create/show">Add Show</a>
+
 		</div>
+
 	</div>
 </body>
 </html>
 
-<%-- <c:out value="${user.email}"></c:out> --%>
+

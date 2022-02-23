@@ -24,17 +24,17 @@
 </head>
 <body class="bg-dark">
 	<div class="container border border-dark bg-dark text-light">
-		<h1 class="m-3 text-center title-size text-grad" >Algo Details <span class="text-size">(Views: ${viewCount.viewCount})</span></h1>
+		<h1 class="title_grad txt_grad title_bar" >Algo Details <span class="text-size">(Views: ${viewCount.viewCount})</span></h1>
 		<hr>
 		<div class="d-flex flex-row justify-content-center">
 			<div class="ms-3 w-50">
 				<p class="text-left width70">${user.firstName} ${user.lastName}</p>
 			</div>
-			<div class="d-flex flex-row justify-content-between me-3 w-50">
-				<a class="txtDecoration" href="/home">Home</a>
-				<a class="txtDecoration" href="/edit/user">Edit Profile</a>
-				<a class="txtDecoration" href="/add/algo">Add Algo</a>
-				<a class="txtDecoration" href="/logout">Logout <span>- (${user.firstName} ${user.lastName}) </span></a>
+			<div class="taskbarBtns">
+				<a class="links" href="/home">Home</a>
+				<a class="links" href="/edit/user">Edit Profile</a>
+				<a class="links" href="/add/algo">Add Algo</a>
+				<a class="links" href="/logout">Logout <span>- (${user.firstName} ${user.lastName}) </span></a>
 			</div>
 		</div>
 		<hr>
@@ -43,7 +43,8 @@
 		
 			<div class="d-flex flex-column w-50 h-100">
 				<div class="p-4 mb-5">
-					<h2 class="text-center" > ~ <span class="text-center bold">${algo.name}</span> ~ </h2>
+					<h2 class="text-center" > ~ <span class="text-center bold bg2_grad">${algo.name}</span> ~ </h2>
+					<h5 class="text-center bold bg2_grad">(${algo.language})</h5>
 					<hr>
 					<div class="d-flex flex-column justify-content-between">
 						<p class="bold txt-underline font-size color-bl">Posted By: </p>
@@ -83,18 +84,18 @@
 			</div>
 			
 			<div class="d-flex flex-column w-50 p-3 h-100 overFlowScroll">
-				<h2 class="bold text-light txt-underline text-center font-size text-secondary">Comments</h2>
+				<h2 class="bold txt-underline text-center font-size color-bl">Comments</h2>
 				<hr>
 				<c:choose>
 					<c:when test="${algo.comments.size()>0}">
 						<c:forEach  items="${algo.comments}" var="comment">
 							<p class="txt-left border m-3 min-h200 overFlowScroll ">
-							<span class="font-size txt-underline color-org" >${comment.user.firstName} ${comment.user.lastName}</span> - 
+							<span class="font-size txt-underline color-org text-secondary" >${comment.user.firstName} ${comment.user.lastName}</span> - 
 							<c:if test="${user.id == comment.user.id}">
 								<span> <a class="text-danger" href="/edit/comment/${comment.id}">Edit</a></span> | 
 								<span> <a class="text-danger" href="/delete/comment/${comment.id}/${algo.id}">Delete</a></span> 
 							</c:if>
-							<span>- ${comment.thisComment} </span>
+							<span class="color-gr">- ${comment.thisComment} </span>
 							</p>
 							
 						</c:forEach>

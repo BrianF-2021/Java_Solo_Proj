@@ -23,62 +23,50 @@
 	<title>Edit User</title>
 </head>
 <body class="bg-dark">
-	<div class="d-flex flex-column w-100 bg-dark text-light">
-		<hr>
-		<h1 class="m-3 text-center text-grad" >Edit Profile</h1>
-		<hr>
+	<div class="container border text-light border bg-dark p-3">
+		<h1 class="title_grad txt_grad title_bar" >Edit Profile</h1>
 		<div class="container border border-dark" >
-			<div class="d-flex flex-row justify-content-center">
-	<!-- 			<div class="d-flex flex-row justify-content-around width30"> -->
-	<%-- 				<p class="text-left width70">Welcome ${user.firstName} ${user.lastName}</p> --%>
-	<!-- 				<a href="/edit/user">Edit Profile</a> -->
-	<!-- 			</div> -->
+			<div class="taskbar">
 				<div class="w-75">
 					<p class="text-left width70">${user.firstName} ${user.lastName}</p>
 				</div>
-					
 	<!-- 			<div class="d-flex flex-row justify-content-around width30"> -->
-				<div class="d-flex flex-row justify-content-between w-25 me-3">
-					<a class="txtDecoration" href="/home">Home</a>
-					<a class="txtDecoration" href="/add/algo">Add Algo</a>
-					<a class="txtDecoration" href="/logout">Logout - (${user.firstName} ${user.lastName})</a>
+				<div class="taskbarBtns">
+					<a class="links" href="/home">Home</a>
+					<a class="links" href="/add/algo">Add Algo</a>
+					<a class="links" href="/logout">Logout - (${user.firstName} ${user.lastName})</a>
 				</div>
 			</div>
 		
-<!-- 			<div class="d-flex flex-row justify-content-between"> -->
-<!-- 				<a href="/home">Home</a> -->
-<%-- 				<a href="/logout">Logout <span>- (${user.firstName} ${user.lastName}) </span></a> --%>
-<!-- 			</div> -->
-			<hr>
-			<h1 class="mb-3 text-left" >Edit</h1>
-		 	<div class="d-flex flex-column mb-5">   
+		 	<div class="d-flex flex-column justify-content-center m-5 bg-dark">   
+				<h1 class="text-left color-bl" >Account: </h1>
 	
-			    <form:form class="form-control w-75" method="POST" action="/editing/user/${user.id}" modelAttribute="user">
+			    <form:form class="form-control w-75 bg-dark border_grad color-bl" method="POST" action="/editing/user/${user.id}" modelAttribute="user">
 	   		        <p class="mb-3 mt-t">
 			            <form:label path="firstName">First Name: </form:label>
 			            <form:errors class="text-danger" path="firstName"/>
-			            <form:input class="form-control" type="text" placeholder="First Name" path="firstName"/>
+			            <form:input class="form-control bg-dark border border-secondary color-gr" type="text" placeholder="First Name" path="firstName"/>
 			        </p>
 			        
 			       	<p class="mb-3 mt-t">
 			            <form:label path="lastName">Last Name: </form:label>
 			            <form:errors class="text-danger" path="lastName"/>
-			            <form:input class="form-control" type="text" placeholder="Last Name" path="lastName"/>
+			            <form:input class="form-control border border border-secondary bg-dark color-gr" type="text" placeholder="Last Name" path="lastName"/>
 			        </p>
 			        <p class="mb-3 mt-t">
 			            <form:label path="email">Email: </form:label>
 			            <form:errors class="text-danger" path="email"/>
-			            <form:input class="form-control" type="email" placeholder="Email" path="email"/>
+			            <form:input class="form-control border border-secondary bg-dark color-gr" type="email" placeholder="Email" path="email"/>
 			        </p>
 			        <p class="mb-3 mt-t">
 			            <form:label path="password">Password: </form:label>
 			            <form:errors class="text-danger" path="password"/>
-			            <form:password class="form-control" placeholder="Password" path="password" value="${user.password}"/>
+			            <form:password class="form-control border border-secondary bg-dark color-gr" placeholder="Password" path="password" value="${user.password}"/>
 			        </p>
 			        <p class="mb-3 mt-t">
 			            <form:label path="passwordConfirmation">Confirm Password: </form:label>
 			            <form:errors class="text-danger" path="passwordConfirmation"/>
-			            <form:password class="form-control" placeholder="Password" path="passwordConfirmation" value="${user.password}"/>
+			            <form:password class="form-control border border-secondary bg-dark color-gr" placeholder="Password" path="passwordConfirmation" value="${user.password}"/>
 			        </p>
 			        <div class="d-flex flex-row justify-content-around m-3">
 				        <input class="btns" type="submit" value="Submit"/>
@@ -86,13 +74,13 @@
 				    </div>
 			    </form:form>
 		     </div>	
-      		<div class="mb-3 mt-3 w-75">
+		 	<div class="d-flex flex-column justify-content-center m-5">   
       			 <form:form action="/add/picture/${user.id}" enctype="multipart/form-data" method="POST" modelAttribute="user">
 	 				<form:hidden path="firstName" value="${user.firstName}"/>
 	 				<form:hidden path="lastName" value="${user.lastName}"/>
 	 				<form:hidden path="email" value="${user.email}"/>
 	 				<form:hidden path="password" value="${user.password}"/>
-	 				<h2>Add Profile Picture</h2>
+	 				<h2 class="color-bl">Add Profile Picture:</h2>
 	 				<img id="thumbnail" alt="Image Preview" />
 	 				<form:label path="picture">Picture</form:label>
 		            <form:errors class="text-light" path="picture"/>
@@ -105,6 +93,7 @@
     </div>
 </body>
 </html>
+
 <!-- Try option A -->
 <%--       			 <form:form action="/add/picture/${user.id}" enctype="multipart/form-data" method="POST" modelAttribute="user"> --%>
 <%-- 	 				<form:hidden path="firstName" value="${user.firstName}"/> --%>

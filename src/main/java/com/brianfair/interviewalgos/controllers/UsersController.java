@@ -31,25 +31,19 @@ import com.brianfair.interviewalgos.validators.UserValidation;
 public class UsersController
 {
 	
-//	@Autowired
-//    private ShowService showService;
 	@Autowired
     private UserService userService;
 	@Autowired
 	private UserValidation validation;
 	@Autowired
 	private AlgoService algoService;
-//	@Autowired
-//	private RateService rateService;
-	
-	
-    
-// @Autowired is the same and functions the same as the following:
-//    public UsersController(UserService userService) {
-//        this.userService = userService;
-//    }
-//	
 
+
+	@RequestMapping("/rain")
+	public String rain()
+	{
+		return "rain.jsp";
+	}
 	
 	@RequestMapping("/home")
 	public String home(Model model, HttpSession session)
@@ -152,7 +146,6 @@ public class UsersController
 			}
 			Long user_id = (Long)session.getAttribute("user_id");
 			User usr = this.userService.findUserById(user_id);
-//			model.addAttribute("user", usr);
 			System.out.println("usr email: "+usr.getEmail()+" user email: "+user.getEmail());
 
 			if ((usr.getEmail().equals(user.getEmail())))
@@ -172,55 +165,6 @@ public class UsersController
 	  }
 	  
 
-
-			
-			
-			
-			
-
-		
-//	@RequestMapping("/register")
-//	public String registerForm(@ModelAttribute("user") User user) {
-//	    return "registration.jsp";
-//	}
-//	
-//	@RequestMapping(value="/registering", method=RequestMethod.POST)
-//	public String registerUser(@Valid @ModelAttribute("user") User user,
-//								BindingResult result, HttpSession session) {
-//	validation.validate(user, result);
-//	if(result.hasErrors())
-//	{
-//		return "registration.jsp";
-//	}
-//	User newUser = this.userService.registerUser(user);
-//	session.setAttribute("user_id", newUser.getId());
-//	return "redirect:/home";
-//	}
-//  
-//    
-//    @RequestMapping("/login")
-//    public String login() {
-//        return "login.jsp";
-//    }
-//    @RequestMapping(value="/loggingIn", method=RequestMethod.POST)
-//    public String loginUser(@RequestParam("email") String email,
-//    					@RequestParam("password") String password,
-//    					Model model,
-//    					HttpSession session,
-//    					RedirectAttributes redirectAttr) {
-//    	if(!this.userService.authenticateUser(email, password))
-//    	{
-//    		redirectAttr.addFlashAttribute("loginError", "Invalid Credentials!");
-//    		return "redirect:/login";
-//    		
-//    	}
-//    	User this_user = this.userService.findByEmail(email);
-//  	  	session.setAttribute("user_id", this_user.getId());
-//  	  	return "redirect:/home";
-//    }
-//
-//    
-	
 	@RequestMapping("/like/{id}")
 	public String like(@PathVariable("id") Long algo_id, HttpSession session)
 	{
@@ -264,6 +208,48 @@ public class UsersController
 	
 	
 }
+
+//@RequestMapping("/register")
+//public String registerForm(@ModelAttribute("user") User user) {
+//    return "registration.jsp";
+//}
+//
+//@RequestMapping(value="/registering", method=RequestMethod.POST)
+//public String registerUser(@Valid @ModelAttribute("user") User user,
+//							BindingResult result, HttpSession session) {
+//validation.validate(user, result);
+//if(result.hasErrors())
+//{
+//	return "registration.jsp";
+//}
+//User newUser = this.userService.registerUser(user);
+//session.setAttribute("user_id", newUser.getId());
+//return "redirect:/home";
+//}
+//
+//
+//@RequestMapping("/login")
+//public String login() {
+//    return "login.jsp";
+//}
+//@RequestMapping(value="/loggingIn", method=RequestMethod.POST)
+//public String loginUser(@RequestParam("email") String email,
+//					@RequestParam("password") String password,
+//					Model model,
+//					HttpSession session,
+//					RedirectAttributes redirectAttr) {
+//	if(!this.userService.authenticateUser(email, password))
+//	{
+//		redirectAttr.addFlashAttribute("loginError", "Invalid Credentials!");
+//		return "redirect:/login";
+//		
+//	}
+//	User this_user = this.userService.findByEmail(email);
+//	  	session.setAttribute("user_id", this_user.getId());
+//	  	return "redirect:/home";
+//}
+//
+//
 //	
 //@RequestMapping("/home")
 //public String home(Model model, HttpSession session)
